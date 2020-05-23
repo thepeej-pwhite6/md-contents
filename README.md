@@ -13,6 +13,17 @@ $ npm install -g md-contents-1.2.0.tar.gz
 
 ## Usage
 
+### Visual Code
+
+In Visual Code, spin up a Command Palette (`View|Command Palette...` or `[Ctrl]+[Shift]+P`).  You can use te following:
+
+* `md-contents - Add (Exclude Navigation)`
+* `md-contents - Add (Include Navigation)`
+* `md-contents - Remove (Exclude Navigation)`
+* `md-contents - Remove (Include Navigation)`
+
+### Command Line
+
 To add a contents section to an existing MarkDown document, execute the following from a command line:
 
 
