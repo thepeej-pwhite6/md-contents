@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../out/md-contents.js');
+require('../src/md-contents.js');
