@@ -2,7 +2,7 @@
 	"name": "md-contents",
 	"displayName": "MD-Contents",
 	"description": "Utility to add/remove contents section to MarkDown document.",
-	"version": "1.2.0",
+	"version": "1.2.3",
 	"engines": {
 		"vscode": "^1.45.0"
 	},
@@ -26,6 +26,7 @@
 	  },
 	"icon": "md-contents.png",
 	"main": "./out/extension.js",
+	"files": ["./src/md-contents.js"],	
 	"contributes": {
 		"commands": [
 			{

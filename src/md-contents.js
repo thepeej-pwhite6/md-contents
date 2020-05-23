@@ -1,76 +1,10 @@
-var fs = require('fs');
 var marked = require('marked');
 
 let contents = []; // Array that will hold the headings from the MarkDown
-const clArgs = process.argv.slice(2);
+
 let levelMembers = [];
 let levelMember = [];
 
-
-var msg = "\nUsage:\n";
-msg = msg + "\t[filename] [add/remove] [options]\n";
-msg = msg + "\nWhere:\n";
-msg = msg + "\t[filename]\tis the MarkDown file to process including relative path.\n";
-msg = msg + "\t[add/remove]\tadd for adding contents section, remove for removing contents section.\n";
-msg = msg + "\t[options]\tis one of the following:\n";
-msg = msg + "\t\t-n\tAdd navigation aids\n";
-msg = msg + "\nExample:\n";
-msg = msg + "\tmd-contents \"./md-content-test.md\" add";
-
-if (clArgs.length & 2){
-} else {
-  console.log(msg);
-  process.exit(-1);
-}
-
-for (var i = 1; i < clArgs.length; i = i + 1) {  
-  switch (clArgs[i]){
-    case "-n":
-      navigation = true;
-    case "add":    
-    case "remove":    
-      break;
-    default:
-      console.log(msg);
-      process.exit(-1);
-  }
-}
-
-inputFile = clArgs[0]
-
-try {
-  var fileContents = fs.readFileSync(inputFile, 'utf8');
-} catch(err){
-  console.log(err.message);
-  process.exit(-1);
-}
-
-switch (clArgs[1]){  
-  case "add":    
-    try {
-      if (navigation === true){
-        newMarkDown = add(fileContents, true);
-      } else {
-        newMarkDown = add(fileContents);
-      }      
-    } catch (err) {      
-      process.exit(-1)
-    }
-    break;
-  case "remove":      
-    try {
-      if (navigation === true){
-        newMarkDown = remove(fileContents, true);
-      } else {
-        newMarkDown = remove(fileContents);
-      }
-    } catch (err) {      
-      process.exit(-1)
-    }
-    break;
-}
-
-fs.writeFileSync(inputFile, newMarkDown);  
 
 function add (inputText, navigation) {
 
@@ -438,33 +372,5 @@ function bookmark(heading){
   return ("#" + heading.toLowerCase().replace(/\./g,"").replace(/ /g,"-"));
 }
 
-
-
-
-// // Heading #1
-// for (var i = 0; i < Object.keys(fileContentsJSON).length; i = i + 1) {  
-//     //console.log("Heading #1")
-//     console.log(Object.keys(fileContentsJSON)[i])
-//     // Heading #2
-//     for (var j = 0; j < Object.keys(Object.values(fileContentsJSON)[i]).length; j = j + 1) {          
-//         //console.log("\tHeading #2")
-//         //console.log("  " + Object.keys(Object.values(fileContentsJSON)[i])[j])
-//         switch (Object.keys(Object.values(fileContentsJSON)[i])[j]){
-//             case "raw": case undefined:
-//                 break
-//             default:
-//                 console.log("  " + Object.keys(Object.values(fileContentsJSON)[i])[j])
-//         }
-//         // Heading #3
-//         for (var k = 0; k < Object.keys(Object.keys(Object.values(fileContentsJSON)[i])[j]).length; k = k + 1) {  
-//             //console.log("\tHeading #3")
-//             //console.log("    " + Object.keys(Object.values(Object.values(fileContentsJSON)[i])[j])[k])            
-//             switch (Object.keys(Object.values(Object.values(fileContentsJSON)[i])[j])[k]){
-//                 case "raw": case undefined:
-//                     break
-//                 default:
-//                     console.log("    " + Object.keys(Object.values(Object.values(fileContentsJSON)[i])[j])[k])
-//             }            
-//         }
-//     }
-// }
+module.exports.add = add;
+module.exports.remove = remove;
